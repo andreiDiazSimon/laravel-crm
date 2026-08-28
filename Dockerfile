@@ -37,5 +37,7 @@ COPY --from=frontend /app/public/build ./public/build
 # Make Laravel storage/cache writable
 RUN chmod -R 775 storage bootstrap/cache
 
+EXPOSE 8000
+
 # HostForge will provide PORT
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT}"]
+CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"]
